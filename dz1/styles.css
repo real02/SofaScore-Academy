@@ -2,10 +2,9 @@
     display: flex;
     justify-content: center;
     position: sticky;
-    margin: 10px;
     padding: 5px;
     top: 0;
-    margin: 10px 400px;
+    margin: auto 400px;
     background-color: lightcoral;
 }
 
@@ -13,16 +12,10 @@ body {
     background-color: lightblue;
 }
 
-form {
-    display: inline-block;
-}
-
 input[type=text] {
     width: 100px;
-    padding: 12px, 20px;
     border-radius: 1px;
     margin: 2px;
-    display: inline-block;
 }
 
 input[type=submit] {
@@ -45,7 +38,7 @@ label {
     width: 64px;
 }
 
-#logo {
+.logo {
     width: 70px;
     height: 70px;
     background-color: #f5f5f5;
@@ -56,10 +49,26 @@ label {
     display: flex;
     justify-content: space-around;
     background-color: chartreuse;
+    align-items: center;
 }
 
-#logo div {
-    flex: 0 0 auto;
+.logoInside {
+    width: 25px;
+    height: 25px;
+    border-radius: 20%;
+    align-self: center;
+}
+
+.logoInsideLeft {
+    background-color: #fe0000;
+    border: 1px solid red;
+    margin-left: 2px;
+}
+
+.logoInsideRight {
+    background-color: blue;
+    border: 1px solid blue;
+    margin-right: 2px;
 }
 
 #logoInsideLeft {
@@ -83,9 +92,10 @@ label {
 }
 
 div.loginStyle {
+    width: 300px;
     display: flex;
     justify-content: center;
-    margin: 150px 400px;
+    margin: 150px auto;
     align-items: center;
     border-radius: 5px;
     background-color: #f2f2f2;
