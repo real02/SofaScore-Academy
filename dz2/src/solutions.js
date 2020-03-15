@@ -52,28 +52,6 @@ module.exports = {
     })()
 
     return obj
-
-    // function Obj () {
-    //   let value = 2
-    //   this.getValue = function() {
-    //     return value
-    //   }
-    //   this.setValue = function(value2) {
-    //     value = value2
-    //   }
-    // }
-    // var value = 2
-    // var obj = {
-    //   getValue: function () {
-    //     return this.value
-    //   },
-    //   setValue: function () {
-    //     this.value = value
-    //   }
-
-
-    return Obj
-
   },
 
   /**
