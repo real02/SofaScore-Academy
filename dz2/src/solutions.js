@@ -98,8 +98,7 @@ module.exports = {
    * @param {Date} date
    */
   formatDate(date) {
-    let formattedDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
-    return formattedDate
+    return `${date.getDate()}-${(date.getMonth() + 1)}-${date.getFullYear()}`
   },
 
   /**
