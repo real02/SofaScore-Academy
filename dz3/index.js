@@ -3,8 +3,20 @@ const cache = {}
 
 const fetchPokemon = async () => {
     const url = `https://pokeapi.co/api/v2/pokemon?limit=150`
-    const res = await fetch(url)
-    const data = await res.json()
+    var res
+    var data
+
+    try {
+        res = await fetch(url)
+    } catch (error) {
+        //print some message
+    }
+    try {
+        data = await res.json()
+    } catch (error) {
+        //print some message
+    }
+
     const pokemon = data.results.map((result, index) => ({
         ...result,
         id: index + 1,
@@ -53,7 +65,6 @@ const displayPopup = (pokemon) => {
                 <p><small>Height: </small>${pokemon.height} | <small>Weight: </small>${pokemon.weight} | 
                 <small>Type: </small>${type}
             </div>    
-        </li>
         </div>
     `
     listaPokemona.innerHTML = htmlString + listaPokemona.innerHTML

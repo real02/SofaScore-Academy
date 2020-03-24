@@ -25,7 +25,7 @@ body {
     right: 20px;
 }
 
-img:hover {
+div:hover, img:hover {
     cursor: pointer;
 }
 
