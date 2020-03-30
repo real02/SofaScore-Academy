@@ -65,6 +65,10 @@ input {
 .desc h2 {
   font-size: 1em;    
   font-weight: 700;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 300px;
+  white-space: nowrap;
 }
 .desc h3, p {
   font-weight: 300;
