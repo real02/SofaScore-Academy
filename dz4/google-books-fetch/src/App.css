@@ -1,0 +1,133 @@
+header {
+  padding: 30px 0;
+  background-color: pink;
+  justify-content: center;
+  text-align: center;
+}
+
+header h1 {
+  display: inline;
+}
+
+header i {
+  margin-left: 10px;
+}
+
+input {
+  width: 150px;
+  padding: 5px;
+  font-size: 1em;
+}
+
+.search-area form {
+  width: 320px;
+  margin: 0 auto;
+  padding: 20px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-area button {
+  display: inline;
+  background: #343a40;
+  color: #fff;
+  border: none;
+  padding: 8px 13px 10px 13px;
+  margin: 0 15px 0 0;
+  position: relative;
+}
+
+.list {
+  display: flex;
+  margin: 8px auto;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card-container {
+  width: 315px;
+  border: 1px solid rgba(0,0,0,.125);
+  margin: 8px auto;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.desc {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.desc h2 {
+  font-size: 1em;    
+  font-weight: 700;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 300px;
+  white-space: nowrap;
+}
+.desc h3, p {
+  font-weight: 300;
+}
+
+.desc h3 {
+  color: #6c757d;
+  font-size: 1em;
+  padding: 10px 0 10px 0;
+  margin-top: 5px;
+}
+
+.desc p {
+  color: #6c757d;
+}
+
+img {
+  width: 80%;
+  height: 250px;
+  margin: 0 30px;
+}
+
+select {
+  background-color: #343a40;
+  color: #fff;
+  height: 40px;
+  width: 70px;
+  position: relative;
+}
+
+.animation {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.loader {
+  border: 10px solid #f3f3f3;
+  border-radius: 50px;
+  border-top: 10px solid black;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+.loader.hidden {
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
