@@ -1,33 +1,24 @@
 import React from "react";
 
-//var active = true;
-
-/*
-    DON'T KNOW HOW TO SET LOADING SPINNER TO WORK PROPERLY
-*/
-// function loadAnimation(flag) {
-//   if (flag) {
-//     const loader = document.querySelector(".loader");
-//     loader.className = "loader hidden";
-//     active = false;
-//     return (
-//       <div className="animation">
-//         <div className="loader hidden"></div>
-//       </div>
-//     );
-//   } else {
-//     const loader = document.querySelector(".loader.hidden");
-//     loader.className = "loader";
-//     active = true;
-//     return (
-//       <div className="animation">
-//         <div className="loader"></div>
-//       </div>
-//     );
-//   }
-// }
+function loadAnimation(flag) {
+  if (flag) {
+    return (
+      <div className="animation">
+        <div className="loader"></div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="animation">
+        <div className="loader hidden"></div>
+      </div>
+    );
+  }
+}
 
 const SearchArea = props => {
+  const { isLoading } = props
+
   return (
     <div className="search-area">
       <form onSubmit={props.searchBook} action="">
@@ -39,10 +30,6 @@ const SearchArea = props => {
         />
         <button
           type="submit"
-        //   onClick={() => {
-        //     console.log(active);
-        //     loadAnimation(props.isLoading);
-        //   }}
         >
           Search
         </button>
@@ -54,6 +41,7 @@ const SearchArea = props => {
           <option value="Oldest">Oldest</option>
         </select>
       </form>
+      {loadAnimation(isLoading)}
     </div>
   );
 };

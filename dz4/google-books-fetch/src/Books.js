@@ -11,32 +11,30 @@ class Books extends React.Component {
       books: [],
       searchField: "",
       sort: "",
-      //isLoading: true
+      isLoading: false
     };
 
-    this.handleSearch = this.handleSearch.bind(this);
+    this.handleSearch = this.handleSearch;
   }
-
-  handleLoading = () => {};
 
   searchBook = e => {
     e.preventDefault();
 
-    //this.setState({ isLoading: true });
+    this.setState({ isLoading: true });
 
     const url = "https://www.googleapis.com/books/v1/volumes?q=";
 
     axios
       .get(
         url +
-          this.state.searchField +
-          "+intitle:" + // searching by title
+        this.state.searchField +
+        "+intitle:" + // searching by title
           this.state.searchField +
           "&maxResults=40"
       )
       .then(data => {
         const cleanData = this.cleanData(data);
-        this.setState({ books: cleanData });
+        this.setState({ books: cleanData, isLoading: false });
       });
   };
 
@@ -91,9 +89,6 @@ class Books extends React.Component {
           />
           <BookList books={sortedBooks} searchField={this.state.searchField} />
         </div>
-        // <div className="animation">
-        //       <div className="loader hidden"></div>
-        //     </div>
       );
     } else {
       return (
