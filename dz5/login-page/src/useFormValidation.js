@@ -6,32 +6,19 @@ const useFormValidation = (initialState, validate) => {
   const [isSubmitting, setSubmitting] = React.useState(false);
 
   React.useEffect(() => {
-    if (isSubmitting) {
-      const noErrors = Object.keys(errors).length === 0;
-      if (noErrors) {
-        console.log("authenticated", values.username, values.password);
-      }
-      setSubmitting(false);
-    }
-  }, [errors]);
-
-  React.useEffect(() => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: values.username,
-        password: values.password,
+        password: values.password
       }),
     };
     fetch(
       "https://private-leagues-api.herokuapp.com/api/login",
       requestOptions
     ).then((response) => {
-      console.log(response.json());
-      //console.log(response.json().PromiseStatus)
-
-      // TO-DO: how to check response status, don't know how to fetch it
+      response.json().then(console.log()).catch();
     });
   }, [isSubmitting]);
 

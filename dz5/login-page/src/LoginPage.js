@@ -20,9 +20,8 @@ const LoginPage = () => {
   return (
     <div className="container">
       <div className="section shadow">
+        <div className="logo">SOFA</div>
         <div className="header">
-          <h2 className="animation a1">Welcome to SofaScore League</h2>
-          <h4 className="animation a2">Log in to create your custom league</h4>
         </div>
         <div className="form">
           <input
@@ -32,11 +31,11 @@ const LoginPage = () => {
             name="username"
             value={values.username}
             placeholder="Username/email"
-            className={`form-field animation a3 ${errors.username && "error-input"}`}
-            //className={errors.username && "error-input"}
+            className={`form-field animation a3 ${
+              errors.username && "error-input"
+            }`}
           />
-          {errors.username && <p className="error-text">
-          {errors.username}</p>}
+          {errors.username && <p className="error-text">{errors.username}</p>}
           <input
             onChange={handleChange}
             onBlur={handleBlur}
@@ -44,12 +43,16 @@ const LoginPage = () => {
             name="password"
             value={values.password}
             placeholder="Password"
-            className={`form-field animation a4 ${errors.password && "error-input"}`}
-            //className={errors.password && "error-input"}
+            className={`form-field animation a4 ${
+              errors.password && "error-input"
+            }`}
           />
-          {errors.password && <p className="error-text">
-          {errors.password}</p>}
-          <button className="animation a6" onClick={handleSubmit} disabled={isSubmitting}>
+          {errors.password && <p className="error-text">{errors.password}</p>}
+          <button
+            className="animation a6"
+            onClick={handleSubmit}
+            disabled={isSubmitting || errors}
+          >
             Login
           </button>
         </div>
