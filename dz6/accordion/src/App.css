@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  margin: 2px;
+}
+
+.accordion-section {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(86, 95, 91, 0.7);
+}
+
+.accordion-title {
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  align-content: center;
+  transition: background-color 0.6s ease;
+  color: rgba(23, 26, 25, 0.7);
+  font-size: 1rem;
+  padding: 6px 5px;
+  background: linear-gradient(to left, #0ca32d 0%, #08fd76 100%);
+}
+
+
+
+.accordion-title:hover,
+.active {
+  background-color: #ccc;
+}
+
+.accordion-icon {
+  margin-left: auto;
+  transition: transform 0.6s ease;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+.accordion-content {
+  color: #ffffff;
+  overflow: hidden;
+  transition: max-height 0.6s ease;
+  background: rgba(194, 19, 19, 0.8);
+}
+
+.accordion-text {
+  font-weight: 400;
+  font-size: 14px;
+  padding: 18px;
+}
+
+.header-content {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.modal {
+  position: fixed;
+  top: 200px;
+  left: 200px;
+  background: rgba(200, 100, 250, 0.4);
+  border: 2px solid rgba(0, 20, 150, 0.6);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonOpen > button {
+  background: linear-gradient(to right, #f50629 0%, #fd9d08 100%);
+  width: 100px;
+  height: 50px;
+  margin: 0 45%;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal > button {
+  margin-top: 0;
+  margin-right: 0;
+  width: 50%;
+  justify-content: flex-end;
+}
+
+/* @media only screen and (max-width: 320px) {
+  .App {
+    width: 100%;
+  }
+} */
