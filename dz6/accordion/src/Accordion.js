@@ -8,16 +8,20 @@ const Accordion = (props) => {
 
   const { toogleActive, active } = ManageAccordionState(false);
 
-  React.useEffect(() => {
-    contentRef.current.style.maxHeight = active
-      ? `${contentRef.current.scrollHeight}px`
-      : "0px";
-  }, [active]);
+  let height = 0;
+
+  if (contentRef && contentRef.current) {
+    height = contentRef.current.scrollHeight;
+  }
 
   return (
     <div className="accordion-section">
       <Header active={active} toogleActive={toogleActive} title={props.title} />
-      <Content contentRef={contentRef} children={props.children} />
+      <Content
+        style={{ maxHeight: active ? height : 0 }}
+        contentRef={contentRef}
+        children={props.children}
+      />
     </div>
   );
 };

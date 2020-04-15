@@ -2,7 +2,7 @@ import React from "react";
 
 const Content = (props) => {
   return (
-    <div className="accordion-content" ref={props.contentRef}>
+    <div style={props.style} className="accordion-content" ref={props.contentRef}>
       {props.children}
     </div>
   );

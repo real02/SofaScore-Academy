@@ -27,6 +27,8 @@
   background: linear-gradient(to left, #0ca32d 0%, #08fd76 100%);
 }
 
+
+
 .accordion-title:hover,
 .active {
   background-color: #ccc;
@@ -56,7 +58,7 @@
 
 .header-content {
   font-weight: 600;
-  font-size: "14px";
+  font-size: 14px;
 }
 
 .modal {
