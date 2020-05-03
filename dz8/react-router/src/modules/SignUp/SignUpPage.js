@@ -1,9 +1,11 @@
 import React from "react";
 import useFormValidation from "../../utils/useFormValidation";
-import { connect } from "react-redux";
-import { userRegisterPost } from "../../redux/userRegisterPost";
 import validateAuth from "../../utils/validateAuth";
+import { useDispatch } from "react-redux";
 import "../LoginPage/loginPage.css";
+import { useHistory } from "react-router-dom";
+import { requestOptions } from "../../api/requestOptions";
+import { setUser } from "../../redux/actions";
 
 const INITIAL_STATE = {
   username: "",
@@ -12,13 +14,34 @@ const INITIAL_STATE = {
 
 const SignUpPage = () => {
   const {
-    handleSubmit,
     handleChange,
     handleBlur,
     values,
     errors,
-    isSubmitting,
-  } = useFormValidation(INITIAL_STATE, validateAuth, "register");
+  } = useFormValidation(INITIAL_STATE, validateAuth);
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const hasErrors = !!Object.keys(errors).length;
+
+  const handleSubmit = () => {
+    if (!hasErrors) {
+      fetch(
+        "https://private-leagues-api.herokuapp.com/api/register",
+        requestOptions(values)
+      )
+        .then((resp) => resp.json())
+        .then((data) => {
+          if (data.errors) {
+            // handle errors
+          } else {
+            dispatch(setUser(data));
+            history.push("/login");
+          }
+        });
+    }
+  };
 
   return (
     <div className="container">
@@ -57,9 +80,9 @@ const SignUpPage = () => {
           <button
             className="animation a6"
             onClick={handleSubmit}
-            disabled={isSubmitting || errors}
+            disabled={hasErrors}
           >
-            Sign up
+            Sign Up
           </button>
         </div>
       </div>
@@ -67,8 +90,4 @@ const SignUpPage = () => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  userRegisterPost: (userInfo) => dispatch(userRegisterPost(userInfo)),
-});
-
-export default connect(null, mapDispatchToProps)(SignUpPage);
+export default SignUpPage;
