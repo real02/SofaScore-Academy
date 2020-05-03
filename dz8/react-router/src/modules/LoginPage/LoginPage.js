@@ -1,10 +1,11 @@
 import React from "react";
 import useFormValidation from "../../utils/useFormValidation";
 import validateAuth from "../../utils/validateAuth";
-import { connect } from "react-redux";
-import { userLoginFetch } from "../../redux/userLoginFetch";
 import "./loginPage.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { setUser } from "../../redux/actions";
+import { requestOptions } from "../../api/requestOptions";
+import { useDispatch } from "react-redux";
 
 const INITIAL_STATE = {
   username: "",
@@ -12,14 +13,33 @@ const INITIAL_STATE = {
 };
 
 const LoginPage = () => {
-  const {
-    handleSubmit,
-    handleChange,
-    handleBlur,
-    values,
-    errors,
-    isSubmitting,
-  } = useFormValidation(INITIAL_STATE, validateAuth, "login");
+  const { handleChange, handleBlur, values, errors } = useFormValidation(
+    INITIAL_STATE,
+    validateAuth
+  );
+
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const hasErrors = !!Object.keys(errors).length;
+
+  const handleSubmit = () => {
+    if (!hasErrors) {
+      fetch(
+        "https://private-leagues-api.herokuapp.com/api/login",
+        requestOptions(values)
+      )
+        .then((resp) => resp.json())
+        .then((data) => {
+          if (data.error) {
+            // here handle errors validation etc.
+          } else {
+            dispatch(setUser(data));
+            history.push("/")
+          }
+        });
+    }
+  };
 
   return (
     <div className="container">
@@ -58,7 +78,7 @@ const LoginPage = () => {
           <button
             className="animation a6"
             onClick={handleSubmit}
-            disabled={isSubmitting || errors}
+            disabled={hasErrors}
           >
             Login
           </button>
@@ -71,8 +91,4 @@ const LoginPage = () => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  userLoginFetch: (userInfo) => dispatch(userLoginFetch(userInfo)),
-});
-
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default LoginPage;
