@@ -1,0 +1,228 @@
+* {
+  box-sizing: border-box;
+}
+
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.4);
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  background-image: url("../../images/bara.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.section {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  animation-name: section;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 1s;
+  background: linear-gradient(to top, white 0%, gray 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 6px;
+}
+
+.logo-right-part-background {
+  width: 200px;
+  height: 200px;
+  background-color: #005daf;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.logo-left-part-background {
+  top: 0px;
+  left: 0px;
+  width: 50%;
+  height: 100%;
+  background-color: #41c443;
+}
+
+.logo-back-of-sofa {
+  width: 90px;
+  height: 48px;
+  top: 55px;
+  left: 55px;
+  position: relative;
+  background-color: #fafbf5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.logo-sofa-seat {
+  width: 150px;
+  height: 28px;
+  background-color: #fafbf5;
+  top: 63px;
+  left: 25px;
+  position: relative;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+/* .logo-left-armchair {
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  border-top: 62px solid #fafbf5;
+  border-left: 40px solid transparent;
+  border-top-left-radius: 5px 55px;
+  border-bottom-left-radius: 75px;
+  transform: skewY(20deg);
+}
+
+.logo-right-armchair {
+} */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.form-field {
+  height: 46px;
+  padding: 0px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: 0.2s;
+  margin-top: 20px;
+  font-size: 20px;
+  align-items: center;
+}
+
+.form > button {
+  padding: 12px 10px;
+  border: 0;
+  background: linear-gradient(to right, #f50629 0%, #fd9d08 100%);
+  border-radius: 3px;
+  margin-top: 20px;
+  color: #fff;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.form > button:disabled {
+  background-color: rgb(136, 138, 139);
+}
+
+.animation {
+  animation-name: move;
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+  animation-delay: 2s;
+}
+
+.a1 {
+  animation-delay: 2s;
+}
+
+.a2 {
+  animation-delay: 2.1s;
+}
+
+.a3 {
+  animation-delay: 2.2s;
+}
+
+.a4 {
+  animation-delay: 2.4s;
+}
+
+.a5 {
+  animation-delay: 2.5s;
+}
+
+.a6 {
+  animation-delay: 2.6s;
+}
+
+.a7 {
+  animation-delay: 2.7s;
+  padding-top: 10px;
+}
+
+.error-input {
+  border: 2px solid red;
+  border-radius: 4px;
+}
+
+.error-text {
+  margin: 0.25em 0 0 0;
+  padding: 0;
+  color: red;
+  font-style: bold;
+  font-size: 1.2rem;
+}
+
+@keyframes move {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+@keyframes section {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+
+  100% {
+    opacity: 1;
+    padding: 20px 40px;
+    margin: 50px auto;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1415px) {
+  .section.shadow {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (min-width: 1415px) {
+  .header {
+    padding-right: 30px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .form-field {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .section.shadow {
+    margin: 50px 10px;
+    width: 280px;
+  }
+}
