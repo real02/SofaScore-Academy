@@ -34,7 +34,7 @@ const LoginPage = () => {
         .then((resp) => resp.json())
         .then((data) => {
           if (data.errors) {
-            // handle errors
+            history.push("*")
           } else {
             dispatch(setUser(data));
             history.push("/");
