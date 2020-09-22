@@ -1,18 +1,18 @@
 import React from "react";
-import useFormValidation from "../../utils/useFormValidation";
-import validateAuth from "../../utils/validateAuth";
+import useFormValidation from "./useFormValidation";
+import validateAuth from "./validateAuth";
 import { useDispatch } from "react-redux";
-import "../LoginPage/loginPage.css";
-import { useHistory } from "react-router-dom";
-import { requestOptions } from "../../api/requestOptions";
-import { setUser } from "../../redux/actions";
+import "./loginPage.css";
+import { Link, useHistory } from "react-router-dom";
+import { requestOptions } from "./requestOptions";
+import { setUser } from "./actions";
 
 const INITIAL_STATE = {
   username: "",
   password: "",
 };
 
-const SignUpPage = () => {
+const LoginPage = () => { 
   const {
     handleChange,
     handleBlur,
@@ -28,7 +28,7 @@ const SignUpPage = () => {
   const handleSubmit = () => {
     if (!hasErrors) {
       fetch(
-        "https://private-leagues-api.herokuapp.com/api/register",
+        "https://private-leagues-api.herokuapp.com/api/login",
         requestOptions(values)
       )
         .then((resp) => resp.json())
@@ -37,7 +37,7 @@ const SignUpPage = () => {
             // handle errors
           } else {
             dispatch(setUser(data));
-            history.push("/login");
+            history.push("/");
           }
         });
     }
@@ -82,12 +82,15 @@ const SignUpPage = () => {
             onClick={handleSubmit}
             disabled={hasErrors}
           >
-            Sign Up
+            Login
           </button>
+          <div className="animation a7">
+            <Link to={`/signUp`}>Don't have an account, Sign Up</Link>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default SignUpPage;
+export default LoginPage;

@@ -1,54 +1,63 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoginPage from "./modules/LoginPage/LoginPage";
 import SignUpPage from "./modules/SignUp/SignUpPage";
 import { HomePage } from "./modules/HomePage/HomePage";
-import { Provider } from "react-redux";
-import { store } from "./state/store";
-import { useSelector, connect } from "react-redux";
-import { setLoggedInStatus } from "./redux/actions";
-import {ProtectedRoute} from "./modules/ProtectedRoute"
-import {getProfileFetch} from "./redux/getProfileFetch"
+import { Provider, useSelector } from "react-redux";
+import { store, persistor } from "./state/store";
+import { ProtectedRoute } from "./api/ProtectedRoute";
+import { PersistGate } from "redux-persist/integration/react";
+import { checkToken } from "./api/checkToken";
 
-function App() {
-  //const isLoggedIn = useSelector((state) => state.status);
-
-  const toogleLogin = React.useCallback(() => {
-    setLoggedInStatus((previous) => !previous);
-  });
-
-  // React.useEffect(() => {
-  //   this.props.getProfileFetch()
-  // })
-
-  console.log(store.getState())
-
+function Providers() {
   return (
     <Provider store={store}>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <LoginPage />
-          </Route>
-          <Route path="/signUp">
-            <SignUpPage />
-          </Route>
-          <ProtectedRoute path="/home">
-            <HomePage />
-          </ProtectedRoute>
-          <Route path="*">
-            <h1>404 - page not found</h1>
-          </Route>
-        </Switch>
-      </Router>
+      <PersistGate persistor={persistor}>
+        <Router>
+          <App />
+        </Router>
+      </PersistGate>
     </Provider>
   );
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   getProfileFetch: () => dispatch(getProfileFetch())
-// })
+function App() {
+  const token = useSelector((state) => state.user.token);
 
-// export default connect(null, mapDispatchToProps)(App);
+  useEffect(() => {
+    if(!token) {
+      return 
+    }
 
-export default App
+    async function fn() {
+      const data = await checkToken(token);
+
+      if(data.error) {
+        // redirect to /login
+      }
+
+      console.log({ data });
+    }
+    fn();
+    // eslint-disable-next-line
+  }, []);
+
+  return (
+    <Switch>
+      <Route path="/login">
+        <LoginPage />
+      </Route>
+      <Route path="/signUp">
+        <SignUpPage />
+      </Route>
+      <ProtectedRoute exact path="/">
+        <HomePage />
+      </ProtectedRoute>
+      <Route path="*">
+        <h1>404 - page not found</h1>
+      </Route>
+    </Switch>
+  );
+}
+
+export default Providers;
